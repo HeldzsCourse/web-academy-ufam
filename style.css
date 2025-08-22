@@ -1,26 +1,42 @@
-div {
-  height: 100px;
-  width: 100px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-#blue {
-  background-color: blue;
-  position: static;
+.container {
+  background-color: brown;
+  display: grid;
+  padding: 20px;
+  gap: 10px;
+  grid-auto-rows: 100px;
+  grid-template-areas:
+    "s1 s1 s1 s1"
+    "s2 s3 s3 s4"
+    "s5 s5 s6 s6";
+  justify-items: start;
 }
-#yellow {
-  background-color: yellow;
-  position: absolute;
-  top: 50px;
-  left: 50px;
+
+.container > div {
+  background-color: lightblue;
+  border: 2px solid black;
+  font-size: 20px;
 }
-#green {
-  background-color: green;
-  position: fixed;
-  top: 150px;
-  left: 150px;
+
+.container > #s1 {
+  grid-area: s1;
 }
-#red {
-  background-color: red;
-  position: absolute;
-  top: 50px;
-  left: 100px;
+.container > #s2 {
+  grid-area: s2;
+}
+.container > #s3 {
+  grid-area: s3;
+}
+.container > #s4 {
+  grid-area: s4;
+}
+.container > #s5 {
+  grid-area: s5;
+}
+.container > #s6 {
+  grid-area: s6;
 }

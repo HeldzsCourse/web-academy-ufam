@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  padding: 10px;
+  gap: 10px;
+  grid-template-areas: 
+    "red red blue blue"
+    "green purple purple purple"
+    "yellow yellow yellow yellow";
+}
+
+.container > * {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.red {
+  background-color: darkred;
+  grid-area: red;
+}
+.blue {
+  background-color: darkblue;
+  grid-area: blue;
+}
+.green {
+  background-color: darkgreen;
+  grid-area: green;
+}
+.purple {
+  background-color: purple;
+  grid-area: purple;
+}
+.yellow {
+  background-color: orange;
+  grid-area: yellow;
+}
