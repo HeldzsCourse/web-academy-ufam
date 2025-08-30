@@ -7,14 +7,16 @@ function randomValueFromArray(array) {
   return array[random];
 }
 
-const storyText = `It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.`;
-const insertX = ["Willy the Goblin", "Big Daddy", "Father Christmas"];
-const insertY = ["the soup kitchen", "Disneyland", "the White House"];
-const insertZ = [
-  "spontaneously combusted",
-  "melted into a puddle on the sidewalk",
-  "turned into a slug and crawled away",
-];
+const storyText = `O calor de 94°F parecia pesar no ar, trazendo velhas memórias. Foi por isso que :insertx: voltou até :inserty:, um lugar que não visitava há anos. Parado ali, encarando as marcas do tempo, :insertx: apenas :insertz:. Do outro lado da rua, Bob o reconheceu. Ele sabia o que aquele lugar significava e o que :insertx: carregava nos ombros — um peso invisível, quase uns 300 libras de pura saudade.`;
+const insertX = ["um Zé Ninguém com o violão nas costas",
+  "a Dama do Chapéu Roxo",
+  "um Poeta Esquecido pela cidade"];
+const insertY = ["o fliperama abandonado da cidade",
+  "a velha ponte de madeira sobre o riacho",
+  "o último banco livre da praça central"];
+const insertZ = ["deu um sorriso triste e sussurrou um nome ao vento",
+  "sentou no chão e ficou em silêncio por um longo tempo",
+  "tirou uma foto gasta do bolso e a deixou ali"];
 
 randomize.addEventListener("click", result);
 
@@ -34,10 +36,10 @@ function result() {
   }
 
   if (document.getElementById("uk").checked) {
-    const weight = Math.round(300 * 0.0714286) + " stone";
-    const temperature = Math.round((94 - 32) * (5 / 9)) + " centigrade";
-    newStory = newStory.replace("94 fahrenheit", temperature);
-    newStory = newStory.replace("300 pounds", weight);
+    const weight = Math.round(300 * 0.45359237) + " kg";
+    const temperature = Math.round((94 - 32) * (5 / 9)) + "°C";
+    newStory = newStory.replace("94°F", temperature);
+    newStory = newStory.replace("300 libras", weight);
   }
 
   story.textContent = newStory;
