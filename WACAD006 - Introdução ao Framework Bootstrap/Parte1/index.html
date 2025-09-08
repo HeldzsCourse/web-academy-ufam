@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    />
+    <title>Loja WA</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav
+      class="navbar navbar-expand-md bg-dark border-bottom border-body"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Loja WA</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#tmedia"
+          aria-controls="tmedia"
+          aria-expanded="false"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="tmedia">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./produtos.html">Gerenciar produtos</a>
+            </li>
+          </ul>
+          <button class="btn btn-secondary">Sair</button>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar -->
+
+    <!-- listagem de produtos -->
+    <div class="container">
+      <div class="row">
+        <h5 class="my-3">Produtos:</h5>
+      </div>
+      <div class="row row-cols-md-4 row-cols-sm-2 row-cols-1 g-3">
+        <!-- 1 -->
+        <div class="col">
+          <div class="card shadow">
+            <img
+              src="../Parte1/assets/placeholder-image.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-bg-light">
+              <h5 class="card-title">Umidificador</h5>
+              <h6 class="card-subtitle mb-2 text-muted">R$ 100,00</h6>
+              <a href="#" class="btn btn-primary w-100">Adicionar ao carrinho</a>
+            </div>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="col">
+          <div class="card shadow">
+            <img
+              src="../Parte1/assets/placeholder-image.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-bg-light">
+              <h5 class="card-title">Bicicleta</h5>
+              <h6 class="card-subtitle mb-2 text-muted">R$ 1.200,00</h6>
+              <a href="#" class="btn btn-primary w-100">Adicionar ao carrinho</a>
+            </div>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="col">
+          <div class="card shadow">
+            <img
+              src="../Parte1/assets/placeholder-image.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-bg-light">
+              <h5 class="card-title">Echo Dot</h5>
+              <h6 class="card-subtitle mb-2 text-muted">R$ 600,00</h6>
+              <a href="#" class="btn btn-primary w-100">Adicionar ao carrinho</a>
+            </div>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="col">
+          <div class="card shadow">
+            <img
+              src="../Parte1/assets/placeholder-image.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-bg-light">
+              <h5 class="card-title">Celular</h5>
+              <h6 class="card-subtitle mb-2 text-muted">R$ 1.500,00</h6>
+              <a href="#" class="btn btn-primary disabled w-100">Indisponível</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- listagem de produtos -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
