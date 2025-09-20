@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App de Lembretes</title>
+    <link rel="stylesheet" href="../src/css/style.css">
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Minha Lista</h1>
+
+      <section class="newItemEntry">
+        <h2>Novo Item</h2>
+        <form class="newItemEntry__form" id="itemEntryForm">
+          <input
+            class="newItemEntry_input"
+            id="newItem"
+            type="text"
+            maxlength="40"
+            placeholder="Titulo..."
+            required
+          />
+          <textarea
+            id="description"
+            placeholder="Descrição da tarefa..."
+            required
+          ></textarea>
+          <label for="dueDate">Data Limite:</label>
+          <input type="date" id="dueDate" required />
+          <button
+            type="submit"
+            id="addItem"
+            class="button newItemEntry__button"
+            title="Adicionar novo item"
+          >
+            +
+          </button>
+        </form>
+      </section>
+
+      <section class="listContainer">
+        <header class="listTitle">
+          <h2 id="listName">Lista</h2>
+          <button id="clearItemsButton" class="button listTitle__button" title="Limpar toda a lista">
+            Limpar
+          </button>
+        </header>
+        <hr />
+        <div id="listItems"></div>
+      </section>
+    </main>
+  </body>
+</html>
