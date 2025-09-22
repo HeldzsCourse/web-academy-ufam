@@ -1,8 +1,10 @@
-class FullList {
+// Uma classe que funciona como gerenciadora da lista
+class ListManager {
     constructor() {
         this.items = [];
         this.nextID = 1;
     }
+    //Adiciona novo item na lista
     addItem(title, description, dueDate) {
         const newItem = {
             id: this.nextID,
@@ -15,6 +17,7 @@ class FullList {
         this.items.push(newItem);
         this.nextID++;
     }
+    // ALternar o estado de um item
     toggleChecked(id) {
         const item = this.items.find((l) => l.id === id);
         if (item) {
@@ -25,9 +28,11 @@ class FullList {
             return false;
         }
     }
+    // Get da lista
     listItems() {
         return [...this.items];
     }
+    // Editar um item
     editItem(id, updates) {
         const i = this.items.findIndex((item) => item.id === id);
         if (i === -1) {
@@ -37,22 +42,28 @@ class FullList {
         this.items[i] = Object.assign(Object.assign({}, this.items[i]), updates);
         return true;
     }
+    // Remove um item
     removeItem(id) {
         const oLenght = this.items.length;
         this.items = this.items.filter((item) => item.id !== id);
         return this.items.length < oLenght;
     }
+    // Limpa a lista
     clearList() {
         this.items = [];
     }
 }
+// Bloco carregado após conteúdo DOM ser carregado
 document.addEventListener("DOMContentLoaded", () => {
-    const manager = new FullList();
+    const manager = new ListManager(); // Instância do gerenciador da lista
+    // Referência dos campos HTML
     const form = document.getElementById("itemEntryForm");
     const titleInput = document.getElementById("newItem");
     const descriptionInput = document.getElementById("description");
     const dueDateInput = document.getElementById("dueDate");
     const listItems = document.getElementById("listItems");
+    const clearItems = document.getElementById("clearItemsButton");
+    // Renderizador da lista de lembretes
     const reminderRender = () => {
         listItems.innerHTML = "";
         const reminders = manager.listItems();
@@ -84,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             listItems.appendChild(itemElement);
         });
     };
+    // Evento de envio do formulário para criação de lembrete
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         const title = titleInput.value;
@@ -95,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             form.reset();
         }
     });
+    // Ouvidor de eventos que acontecem dentro da lista
     listItems.addEventListener("click", (event) => {
         const target = event.target;
         const itemElement = target.closest(".item");
@@ -123,11 +136,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-    const clearItems = document.getElementById("clearItemsButton");
+    // Ouvidor do botão de limpar toda lista
     clearItems.addEventListener("click", () => {
-        manager.clearList();
-        listItems.innerHTML = "";
-        reminderRender();
+        if (confirm("Tem certeza que deseja limpar toda a lista?")) {
+            manager.clearList();
+            listItems.innerHTML = "";
+            reminderRender();
+        }
     });
+    // Renderiza uma primeira vez
     reminderRender();
 });

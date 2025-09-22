@@ -1,3 +1,4 @@
+// Modelo dos tipos de dados da aplicação
 interface Item {
   id: number;
   title: string;
@@ -7,10 +8,12 @@ interface Item {
   checked: boolean;
 }
 
-class FullList {
+// Uma classe que funciona como gerenciadora da lista
+class ListManager {
   private items: Item[] = [];
   private nextID: number = 1;
 
+  //Adiciona novo item na lista
   addItem(title: string, description: string, dueDate: Date): void {
     const newItem: Item = {
       id: this.nextID,
@@ -25,6 +28,7 @@ class FullList {
     this.nextID++;
   }
 
+  // ALternar o estado de um item
   toggleChecked(id: number): boolean {
     const item = this.items.find((l) => l.id === id);
     if (item) {
@@ -35,10 +39,12 @@ class FullList {
     }
   }
 
+  // Get da lista
   listItems(): Item[] {
     return [...this.items];
   }
 
+  // Editar um item
   editItem(
     id: number,
     updates: Partial<Omit<Item, "id" | "dueDate">>
@@ -54,6 +60,7 @@ class FullList {
     return true;
   }
 
+  // Remove um item
   removeItem(id: number): boolean {
     const oLenght = this.items.length;
     this.items = this.items.filter((item) => item.id !== id);
@@ -61,14 +68,17 @@ class FullList {
     return this.items.length < oLenght;
   }
 
+  // Limpa a lista
   clearList(): void {
     this.items = [];
   }
 }
 
+// Bloco carregado após conteúdo DOM ser carregado
 document.addEventListener("DOMContentLoaded", () => {
-  const manager = new FullList();
+  const manager = new ListManager(); // Instância do gerenciador da lista
 
+  // Referência dos campos HTML
   const form = document.getElementById("itemEntryForm") as HTMLFormElement;
   const titleInput = document.getElementById("newItem") as HTMLInputElement;
   const descriptionInput = document.getElementById(
@@ -76,7 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ) as HTMLTextAreaElement;
   const dueDateInput = document.getElementById("dueDate") as HTMLInputElement;
   const listItems = document.getElementById("listItems") as HTMLDivElement;
+  const clearItems = document.getElementById("clearItemsButton");
 
+  // Renderizador da lista de lembretes
   const reminderRender = (): void => {
     listItems.innerHTML = "";
 
@@ -116,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // Evento de envio do formulário para criação de lembrete
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const title = titleInput.value;
@@ -128,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Ouvidor de eventos que acontecem dentro da lista
   listItems.addEventListener("click", (event) => {
     const target = event.target as HTMLElement;
     const itemElement = target.closest(".item");
@@ -160,13 +174,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const clearItems = document.getElementById("clearItemsButton");
-
+  // Ouvidor do botão de limpar toda lista
   clearItems.addEventListener("click", (): void => {
-    manager.clearList();
-    listItems.innerHTML = "";
-    reminderRender();
+    if (confirm("Tem certeza que deseja limpar toda a lista?")) {
+      manager.clearList();
+      listItems.innerHTML = "";
+      reminderRender();
+    }
   });
 
+  // Renderiza uma primeira vez
   reminderRender();
 });
