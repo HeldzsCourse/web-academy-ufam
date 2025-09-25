@@ -1,5 +1,7 @@
 "use strict";
+// Classe Aluno com id, nome completo, idade, altura e peso
 class Aluno {
+    // Atributos públicos para acesso direto facilitado
     constructor(id, nomeCompleto, idade, altura, peso) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
@@ -13,6 +15,7 @@ class Aluno {
         this.peso = peso;
     }
 }
+// Classe Turma com id, nome, lista de alunos, getNumAlunos(), getMediaIdades(), getMediaAlturas(), getMediaPesos()
 class Turma {
     constructor(id, nome) {
         this.id = id;
@@ -26,7 +29,7 @@ class Turma {
     }
     getMediaIdades() {
         if (this.listaDeAlunos.length === 0)
-            return 0;
+            return 0; // Impede que retorne NaN
         const somaDasIdades = this.listaDeAlunos.reduce((total, aluno) => total + aluno.idade, 0);
         return somaDasIdades / this.listaDeAlunos.length;
     }
@@ -59,12 +62,14 @@ const mediaIdades = document.getElementById("stat-media-idades");
 const mediaAlturas = document.getElementById("stat-media-alturas");
 const mediaPesos = document.getElementById("stat-media-pesos");
 const alunosTable = document.getElementById("alunos-table-body");
+// Renderizador das estatísticas
 const statsRender = () => {
     numAlunos.textContent = educacaoFisica.getNumAlunos().toString();
     mediaIdades.textContent = educacaoFisica.getMediaIdades().toString();
     mediaAlturas.textContent = educacaoFisica.getMediaAlturas().toFixed(2);
     mediaPesos.textContent = educacaoFisica.getMediaPesos().toFixed(1);
 };
+// Renderizador da lista de alunos (array listaDeAlunos do objeto)
 const listRender = () => {
     alunosTable.innerHTML = "";
     educacaoFisica.listaDeAlunos.forEach((aluno) => {
@@ -82,16 +87,19 @@ const listRender = () => {
         alunosTable.appendChild(tr);
     });
 };
+// Chama as duas funções
 const updatePage = () => {
     statsRender();
     listRender();
 };
+// Limpar o formulário
 const resetForm = () => {
     form.reset();
     inputId.value = "";
     formTitle.textContent = "Adicionar Novo Aluno";
     submitButton.textContent = "Adicionar Aluno";
 };
+// Edita ou salva novo aluno na lista
 const saveAluno = (nome, idade, altura, peso) => {
     const id = parseInt(inputId.value);
     const alturaMetros = altura / 100;
@@ -111,6 +119,7 @@ const saveAluno = (nome, idade, altura, peso) => {
     resetForm();
     updatePage();
 };
+// Remove aluno por id da lista
 const deleteAluno = (id) => {
     educacaoFisica.listaDeAlunos = educacaoFisica.listaDeAlunos.filter((a) => a.id !== id);
     if (parseInt(inputId.value) === id) {
@@ -118,6 +127,7 @@ const deleteAluno = (id) => {
     }
     updatePage();
 };
+// Edita os dados do aluno escolhido pelo id da lista
 const editForm = (id) => {
     const aluno = educacaoFisica.listaDeAlunos.find((a) => a.id === id);
     if (aluno) {
@@ -130,13 +140,16 @@ const editForm = (id) => {
         submitButton.textContent = "Salvar alterações";
     }
 };
+// Ouvidor do formulário
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     saveAluno(inputNome.value, parseInt(inputIdade.value), parseInt(inputAltura.value), parseInt(inputPeso.value));
 });
+// Ouvidor do botão de limpar form
 clearButton.addEventListener("click", () => {
     resetForm();
 });
+// Ouvidor dos botões de ação dos alunos da lista
 alunosTable.addEventListener("click", (event) => {
     const target = event.target;
     const id = parseInt(target.getAttribute("data-id") || "0");

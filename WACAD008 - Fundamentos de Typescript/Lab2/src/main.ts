@@ -1,4 +1,6 @@
+// Classe Aluno com id, nome completo, idade, altura e peso
 class Aluno {
+  // Atributos públicos para acesso direto facilitado
   constructor(
     public id: number,
     public nomeCompleto: string,
@@ -14,6 +16,7 @@ class Aluno {
   }
 }
 
+// Classe Turma com id, nome, lista de alunos, getNumAlunos(), getMediaIdades(), getMediaAlturas(), getMediaPesos()
 class Turma {
   listaDeAlunos: Aluno[] = [];
 
@@ -27,7 +30,7 @@ class Turma {
   }
 
   getMediaIdades(): number {
-    if (this.listaDeAlunos.length === 0) return 0;
+    if (this.listaDeAlunos.length === 0) return 0; // Impede que retorne NaN
     const somaDasIdades = this.listaDeAlunos.reduce(
       (total, aluno) => total + aluno.idade,
       0
@@ -78,6 +81,7 @@ const mediaPesos = document.getElementById("stat-media-pesos")!;
 
 const alunosTable = document.getElementById("alunos-table-body")!;
 
+// Renderizador das estatísticas
 const statsRender = () => {
   numAlunos.textContent = educacaoFisica.getNumAlunos().toString();
   mediaIdades.textContent = educacaoFisica.getMediaIdades().toString();
@@ -85,6 +89,7 @@ const statsRender = () => {
   mediaPesos.textContent = educacaoFisica.getMediaPesos().toFixed(1);
 };
 
+// Renderizador da lista de alunos (array listaDeAlunos do objeto)
 const listRender = () => {
   alunosTable.innerHTML = "";
 
@@ -104,11 +109,13 @@ const listRender = () => {
   });
 };
 
+// Chama as duas funções
 const updatePage = () => {
   statsRender();
   listRender();
 };
 
+// Limpar o formulário
 const resetForm = () => {
   form.reset();
   inputId.value = "";
@@ -116,6 +123,7 @@ const resetForm = () => {
   submitButton.textContent = "Adicionar Aluno";
 };
 
+// Edita ou salva novo aluno na lista
 const saveAluno = (
   nome: string,
   idade: number,
@@ -142,6 +150,7 @@ const saveAluno = (
   updatePage();
 };
 
+// Remove aluno por id da lista
 const deleteAluno = (id: number) => {
   educacaoFisica.listaDeAlunos = educacaoFisica.listaDeAlunos.filter(
     (a) => a.id !== id
@@ -152,6 +161,7 @@ const deleteAluno = (id: number) => {
   updatePage();
 };
 
+// Edita os dados do aluno escolhido pelo id da lista
 const editForm = (id: number) => {
   const aluno = educacaoFisica.listaDeAlunos.find((a) => a.id === id);
   if (aluno) {
@@ -166,6 +176,7 @@ const editForm = (id: number) => {
   }
 };
 
+// Ouvidor do formulário
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -177,10 +188,12 @@ form.addEventListener("submit", (event) => {
   );
 });
 
+// Ouvidor do botão de limpar form
 clearButton.addEventListener("click", () => {
   resetForm();
 });
 
+// Ouvidor dos botões de ação dos alunos da lista
 alunosTable.addEventListener("click", (event) => {
   const target = event.target as HTMLElement;
   const id = parseInt(target.getAttribute("data-id") || "0");
