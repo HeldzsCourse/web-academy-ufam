@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: rgb(17, 24, 39);
+  color: rgb(249, 250, 251);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+#estatisticas {
+  margin-bottom: 2.5rem;
+}
+
+#estatisticas h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem
+}
+
+.media-card {
+  background-color: rgb(31, 41, 55);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-card .label {
+  font-size: medium;
+  font-weight: 500;
+  color: rgb(173, 173, 173);
+}
+
+.media-card .value {
+  font-size: xx-large;
+  font-weight: 700;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+}
+
+.form {
+  background-color: rgb(33, 44, 58);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.form h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: medium;
+  color: rgb(230, 230, 230);
+  margin-bottom: 0.25rem;
+}
+
+.form-group input {
+  display: block;
+  width: 100%;
+  background-color: rgb(55, 65, 81);
+  border: 1px solid #374151;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: rgb(249, 250, 251);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+button {
+  flex: 1;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#submit-button {
+  background-color: aqua;
+}
+
+#clear-button {
+  background-color: #374151;
+  color: white;
+}
+
+.edit-btn {
+  background: none;
+  color: rgb(250, 204, 21);
+  font-weight: normal;
+  padding: 0.2rem;
+  flex: none;
+}
+
+.delete-btn {
+  background: none;
+  color: rgb(239, 68, 68);
+  font-weight: normal;
+  padding: 0.2rem;
+  flex: none;
+}
+
+.table {
+  background-color: rgb(33, 44, 58);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.5rem;
+}
+
+.table-container {
+  overflow-y: auto;
+  max-height: fit-content;
+}
+
+.student-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.student-table thead {
+  background-color: rgb(55, 65, 81);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.student-table th,
+.student-table td {
+  padding: 1rem;
+}
+
+.student-table th {
+  font-weight: 600;
+}
+
+.student-table td {
+  font-weight: 500;
+}
+
+.student-table .text-center {
+  text-align: center;
+}
+
+.student-table tbody tr {
+  border-top: 1px solid rgb(55, 65, 81);
+}
+
+.student-table .action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Controle da Turma de Educação Física</h1>
+      </header>
+
+      <section id="estatisticas">
+        <h2>Estatísticas</h2>
+        <div class="media-grid">
+          <div class="media-card">
+            <span class="label">Nº de Alunos</span>
+            <span id="stat-num-alunos" class="value">0</span>
+          </div>
+          <div class="media-card">
+            <span class="label">Média de Idade</span>
+            <span id="stat-media-idades" class="value">0</span>
+          </div>
+          <div class="media-card">
+            <span class="label">Média de Altura (m)</span>
+            <span id="stat-media-alturas" class="value">0</span>
+          </div>
+          <div class="media-card">
+            <span class="label">Média de Peso (kg)</span>
+            <span id="stat-media-pesos" class="value">0</span>
+          </div>
+        </div>
+      </section>
+
+      <main class="main-grid">
+        <div class="form">
+          <h2 id="form-title">Adicionar Novo Aluno</h2>
+          <form id="aluno-form">
+            <input type="hidden" id="aluno-id" />
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" required />
+            </div>
+            <div class="form-group">
+              <label for="idade">Idade</label>
+              <input type="number" id="idade" required />
+            </div>
+            <div class="form-group">
+              <label for="altura">Altura (cm)</label>
+              <input type="number" id="altura" required />
+            </div>
+            <div class="form-group">
+              <label for="peso">Peso (kg)</label>
+              <input type="number" id="peso" required step="0.1" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" id="submit-button">Adicionar Aluno</button>
+              <button type="button" id="clear-button">Limpar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table">
+          <h2>Alunos na Turma</h2>
+          <div class="table-container">
+            <table class="student-table">
+              <thead>
+                <tr>
+                  <th>Nome Completo</th>
+                  <th class="text-center">Idade</th>
+                  <th class="text-center">Altura</th>
+                  <th class="text-center">Peso</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="alunos-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
