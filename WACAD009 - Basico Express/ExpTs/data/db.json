@@ -1,0 +1,28 @@
+{
+  "product": [
+    {
+      "id": "2",
+      "name": "Tablet",
+      "price": 200,
+      "stock": 8
+    },
+    {
+      "id": "3",
+      "name": "Monitor",
+      "price": 150,
+      "stock": 12
+    },
+    {
+      "id": "0899",
+      "name": "Celular",
+      "price": "5",
+      "stock": "32323"
+    },
+    {
+      "id": "b588",
+      "name": "Samsung Galaxy S24",
+      "price": "4000",
+      "stock": "10"
+    }
+  ]
+}
