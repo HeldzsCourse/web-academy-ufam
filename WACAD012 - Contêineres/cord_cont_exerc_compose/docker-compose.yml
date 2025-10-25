@@ -1,0 +1,26 @@
+services:
+  frontend:
+    container_name: front
+    build: 
+      context: ./frontend
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - webacademy_site
+    
+
+  backend:
+    container_name: back
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - webacademy_site    
+
+networks:
+  webacademy_site:
+    driver: bridge
+  
