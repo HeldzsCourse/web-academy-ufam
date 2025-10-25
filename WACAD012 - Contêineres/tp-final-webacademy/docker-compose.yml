@@ -1,0 +1,62 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4444:4444"
+    volumes:
+      - back_logs:/var/log/backend
+    networks:
+      - app-network
+    depends_on:
+      - dbcontainer
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+      
+
+  dbcontainer:
+    container_name: dbcontainer
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: pass2025
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  dbguicontainer:
+    container_name: dbguicontainer
+    image: phpmyadmin:latest
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: dbcontainer
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: pass2025
+    networks:
+      - app-network
+    depends_on:
+      - dbcontainer
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  back_logs:
