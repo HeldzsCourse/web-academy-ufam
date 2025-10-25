@@ -1,0 +1,13 @@
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y iputils-ping
+CMD ["sleep", "1d"]
+
+## docker build -t ubuntu-ping .
+
+## docker network create pubuntu-network
+
+## docker run -d --name wacad-rede-1 --network pubuntu-network ubuntu-ping
+## docker run -d --name wacad-rede-2 --network pubuntu-network ubuntu-ping
+
+## docker exec -it wacad-rede-1 bash
+## ping wacad-rede-2
