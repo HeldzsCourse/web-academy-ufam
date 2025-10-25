@@ -1,0 +1,8 @@
+docker build -t webacademy-back -f backend/dockerfile_back .
+docker build -t webacademy-front -f frontend/dockerfile_front .
+
+docker network create webacademy_site
+
+docker run -d --name front --network webacademy_site -p 3000:3000 webacademy-front
+docker run -d --name back --network webacademy_site -p 4000:4000 webacademy-back
+docker logs -f back
