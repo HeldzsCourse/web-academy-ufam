@@ -7,7 +7,7 @@ services:
     ports:
       - "4444:4444"
     volumes:
-      - back_logs:/var/log/backend
+      - back_logs:/log
     networks:
       - app-network
     depends_on:
@@ -30,11 +30,13 @@ services:
     container_name: dbcontainer
     image: mysql:latest
     environment:
+      MYSQL_DATABASE: dbcontainer
       MYSQL_ROOT_PASSWORD: pass2025
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./bd:/docker-entrypoint-initdb.d
     networks:
       - app-network
 
