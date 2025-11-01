@@ -1,20 +1,25 @@
 "use client";
 
+import { ItemCarrinhoType } from "@/app/types/ItemCarrinho.types";
 import React from "react";
 
-export default function ItemCarrinho() {
+interface ItemCarrinhoProps {
+  item: ItemCarrinhoType;
+}
+
+export default function ItemCarrinho({ item }: ItemCarrinhoProps) {
   const valorTotalProduto = (
     precoUnitario: number,
     quantidade: number
   ): number => precoUnitario * quantidade;
 
   return (
-    <tr key="1">
-      <td>Notebook 1</td>
-      <td>R$ {(1500).toFixed(2)}</td>
-      <td>2</td>
+    <tr key={item.id}>
+      <td>{item.nome}</td>
+      <td>R$ {item.preco.toFixed(2)}</td>
+      <td>{item.quantidade}</td>
 
-      <td>R$ {valorTotalProduto(1500, 2).toFixed(2)}</td>
+      <td>R$ {valorTotalProduto(item.preco, item.quantidade).toFixed(2)}</td>
       <td>
         <button className="btn btn-danger btn-sm">Remover</button>
       </td>

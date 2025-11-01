@@ -2,8 +2,13 @@
 
 import React from "react";
 import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
+import { ItemCarrinhoType } from "@/app/types/ItemCarrinho.types";
 
-export default function ListagemCarrinho() {
+interface ListagemCarrinhoProps {
+  carrinho: ItemCarrinhoType[];
+}
+
+export default function ListagemCarrinho({ carrinho }: ListagemCarrinhoProps) {
   return (
     <div className="card mb-4">
       <div className="row card-body">
@@ -20,9 +25,9 @@ export default function ListagemCarrinho() {
               </tr>
             </thead>
             <tbody>
-              <ItemCarrinho />
-              <ItemCarrinho />
-              <ItemCarrinho />
+              {carrinho.map((item) => (
+                <ItemCarrinho key={item.id} item={item} />
+              ))}
             </tbody>
           </table>
         </div>
