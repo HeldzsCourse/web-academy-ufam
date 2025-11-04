@@ -13,9 +13,10 @@ const index = async (req: Request, res: Response) => {
     const products = await getAllProducts();
     res.status(StatusCodes.OK).json(products);
   } catch (error) {
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    // res
+    //   .status(StatusCodes.INTERNAL_SERVER_ERROR)
+    //   .json(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res.json(error);
   }
 };
 const create = async (req: Request, res: Response) => {
