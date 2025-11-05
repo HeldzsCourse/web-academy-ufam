@@ -17,6 +17,21 @@ export async function createUser(createUser: CreateUserDTO): Promise<User> {
   const hash = await bcrypt.hash(password, salt);
 
   return prisma.user.create({
-    data: { ...createUser, userTypeId: UserTypes.client, password: hash },
+    data: { ...createUser, password: hash },
+  });
+}
+
+export async function getUserByEmail(email: string): Promise<User | null> {
+  return prisma.user.findUnique({
+    where: { email: email },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      userTypeId: true,
+      password: true,
+      createdAt: true,
+      updatedAt: true,
+    },
   });
 }

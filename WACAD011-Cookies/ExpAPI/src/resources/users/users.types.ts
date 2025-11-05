@@ -1,12 +1,9 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  userType: string;
-}
+import { User } from "../../generated/client";
 
-export type CreateUserDTO = Pick<User, "name" | "email" | "password">;
+export type CreateUserDTO = Pick<
+  User,
+  "name" | "email" | "password" | "userTypeId"
+>;
 
 export type UpdateUserDTO = Partial<CreateUserDTO> & Pick<User, "id">;
 
