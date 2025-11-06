@@ -50,7 +50,9 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 export const ModelName = {
   Product: 'Product',
   User: 'User',
-  UserType: 'UserType'
+  UserType: 'UserType',
+  PurchaseItem: 'PurchaseItem',
+  Purchase: 'Purchase'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -102,6 +104,28 @@ export const UserTypeScalarFieldEnum = {
 export type UserTypeScalarFieldEnum = (typeof UserTypeScalarFieldEnum)[keyof typeof UserTypeScalarFieldEnum]
 
 
+export const PurchaseItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  productId: 'productId',
+  purchaseId: 'purchaseId'
+} as const
+
+export type PurchaseItemScalarFieldEnum = (typeof PurchaseItemScalarFieldEnum)[keyof typeof PurchaseItemScalarFieldEnum]
+
+
+export const PurchaseScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typeof PurchaseScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -135,4 +159,21 @@ export const UserTypeOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTypeOrderByRelevanceFieldEnum = (typeof UserTypeOrderByRelevanceFieldEnum)[keyof typeof UserTypeOrderByRelevanceFieldEnum]
+
+
+export const PurchaseItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  purchaseId: 'purchaseId'
+} as const
+
+export type PurchaseItemOrderByRelevanceFieldEnum = (typeof PurchaseItemOrderByRelevanceFieldEnum)[keyof typeof PurchaseItemOrderByRelevanceFieldEnum]
+
+
+export const PurchaseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+} as const
+
+export type PurchaseOrderByRelevanceFieldEnum = (typeof PurchaseOrderByRelevanceFieldEnum)[keyof typeof PurchaseOrderByRelevanceFieldEnum]
 

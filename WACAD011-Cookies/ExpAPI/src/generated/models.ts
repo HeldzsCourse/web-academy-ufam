@@ -10,4 +10,6 @@
 export type * from './models/Product'
 export type * from './models/User'
 export type * from './models/UserType'
+export type * from './models/PurchaseItem'
+export type * from './models/Purchase'
 export type * from './commonInputTypes'

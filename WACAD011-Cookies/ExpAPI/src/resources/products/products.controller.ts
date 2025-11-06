@@ -20,6 +20,16 @@ const index = async (req: Request, res: Response) => {
   }
 };
 const create = async (req: Request, res: Response) => {
+  /*
+  #swagger.summary = 'Adiciona novo produto na base.'
+  #swagger.parameters['body'] = {
+    in: 'body',
+    schema: { $ref: '#/definitions/CreateProductDto' }
+  }
+  #swagger.responses[200] = {
+    schema: { $ref: '#/definitions/Product' }
+  }
+  */
   try {
     const product = req.body as CreateProductDTO;
 
@@ -34,6 +44,13 @@ const create = async (req: Request, res: Response) => {
   }
 };
 const read = async (req: Request, res: Response) => {
+  /*
+  #swagger.summary = 'Recupera dados de um produto específico.'
+  #swagger.parameters['id'] = { description: 'ID do produto' }
+  #swagger.responses[200] = {
+    schema: { $ref: '#/definitions/Product' }
+  }
+  */
   try {
     const id = req.params.id as string;
     const product = await getProductById(id);

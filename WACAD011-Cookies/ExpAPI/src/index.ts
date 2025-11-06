@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import session from "express-session";
 import { v4 as uuidv4 } from "uuid";
+import swaggerUi from "swagger-ui-express";
+import swaggerFile from "./swagger-output.json";
 
 import setLangCookie from "./middlewares/setLangCookie.js";
 
@@ -15,6 +17,7 @@ const port = process.env.PORT || 3333;
 app.use(express.json());
 app.use(cookieParser());
 app.use(setLangCookie);
+app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(
   session({
     genid: () => uuidv4(),

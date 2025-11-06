@@ -1,4 +1,4 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { createUser, getUserByEmail } from "../users/users.service";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { Login, SignUp } from "./auth.types";

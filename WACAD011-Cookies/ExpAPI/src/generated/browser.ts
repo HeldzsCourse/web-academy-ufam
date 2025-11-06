@@ -31,3 +31,13 @@ export type User = Prisma.UserModel
  * 
  */
 export type UserType = Prisma.UserTypeModel
+/**
+ * Model PurchaseItem
+ * 
+ */
+export type PurchaseItem = Prisma.PurchaseItemModel
+/**
+ * Model Purchase
+ * 
+ */
+export type Purchase = Prisma.PurchaseModel
