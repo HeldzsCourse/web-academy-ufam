@@ -35,3 +35,42 @@ export async function getUserByEmail(email: string): Promise<User | null> {
     },
   });
 }
+
+export async function getUserById(id: string): Promise<UserDTO | null> {
+  return prisma.user.findUnique({
+    where: { id: id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      userTypeId: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+}
+
+export async function updateUser(
+  updateUser: UpdateUserDTO,
+  id: string
+): Promise<User | null> {
+  const { password } = updateUser;
+
+  if (password) {
+    const rounds = parseInt(process.env.SALT_ROUNDS || "10");
+    const salt = await bcrypt.genSalt(rounds);
+    const hash = await bcrypt.hash(password, salt);
+    updateUser.password = hash;
+  }
+
+  return prisma.user.update({
+    where: { id: id },
+    data: updateUser,
+  });
+}
+
+export async function deleteUser(id: string): Promise<User | null> {
+  return prisma.user.delete({
+    where: { id: id },
+  });
+}
