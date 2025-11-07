@@ -1,3 +1,4 @@
+import BootstrapClient from "./components/BootstrapClient/BootstrapClient";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,6 +11,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <Navbar />
       <body>{children}</body>
+      <BootstrapClient />
     </html>
   );
 }
