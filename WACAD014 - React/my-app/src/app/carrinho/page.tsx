@@ -8,7 +8,7 @@ export default function Carrinho() {
   return (
     <main>
       <div className="container p-5">
-        <ResumoCarrinho itens={mockItensCarrinho} />
+        <ResumoCarrinho quantidadeTotal={} precoTotal={} />
         <ListagemCarrinho carrinho={mockItensCarrinho} />
       </div>
     </main>
