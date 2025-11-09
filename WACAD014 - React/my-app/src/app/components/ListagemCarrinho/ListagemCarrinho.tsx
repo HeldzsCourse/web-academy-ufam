@@ -6,9 +6,10 @@ import { ItemCarrinhoType } from "@/app/types/ItemCarrinho.types";
 
 interface ListagemCarrinhoProps {
   carrinho: ItemCarrinhoType[];
+  removerItemDoCarrinho: (id: string) => void;
 }
 
-export default function ListagemCarrinho({ carrinho }: ListagemCarrinhoProps) {
+export default function ListagemCarrinho({ carrinho, removerItemDoCarrinho }: ListagemCarrinhoProps) {
   return (
     <div className="card mb-4">
       <div className="row card-body">
@@ -26,7 +27,7 @@ export default function ListagemCarrinho({ carrinho }: ListagemCarrinhoProps) {
             </thead>
             <tbody>
               {carrinho.map((item) => (
-                <ItemCarrinho key={item.id} item={item} />
+                <ItemCarrinho key={item.id} item={item} removerItemDoCarrinho={removerItemDoCarrinho} />
               ))}
             </tbody>
           </table>

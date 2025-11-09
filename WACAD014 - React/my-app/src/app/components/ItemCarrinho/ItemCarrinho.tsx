@@ -5,9 +5,10 @@ import React from "react";
 
 interface ItemCarrinhoProps {
   item: ItemCarrinhoType;
+  removerItemDoCarrinho: (id: string) => void;
 }
 
-export default function ItemCarrinho({ item }: ItemCarrinhoProps) {
+export default function ItemCarrinho({ item, removerItemDoCarrinho }: ItemCarrinhoProps) {
   const valorTotalProduto = (
     precoUnitario: number,
     quantidade: number
@@ -21,7 +22,7 @@ export default function ItemCarrinho({ item }: ItemCarrinhoProps) {
 
       <td>R$ {valorTotalProduto(item.preco, item.quantidade).toFixed(2)}</td>
       <td>
-        <button className="btn btn-danger btn-sm">Remover</button>
+        <button onClick={() => {removerItemDoCarrinho(item.id)}} className="btn btn-danger btn-sm">Remover</button>
       </td>
     </tr>
   );
