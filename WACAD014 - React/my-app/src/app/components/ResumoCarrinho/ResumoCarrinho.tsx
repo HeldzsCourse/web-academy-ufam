@@ -3,14 +3,14 @@ import { ItemCarrinhoType } from "@/app/types/ItemCarrinho.types";
 import React from "react";
 
 interface ItemCarrinhoProps {
-  quantidadeTotal: ItemCarrinhoType['quantidade'];
-  precoTotal: ItemCarrinhoType['preco'];
+  quantidadeTotal: ItemCarrinhoType["quantidade"];
+  precoTotal: ItemCarrinhoType["preco"];
 }
 
-export default function ResumoCarrinho({ quantidadeTotal,  precoTotal }: ItemCarrinhoProps) {
-  const valorTotal = (precoUnitario: number, quantidade: number): number =>
-    precoUnitario * quantidade;
-
+export default function ResumoCarrinho({
+  quantidadeTotal,
+  precoTotal,
+}: ItemCarrinhoProps) {
   return (
     <div className="card mb-4">
       <div className="card-body">
@@ -19,8 +19,7 @@ export default function ResumoCarrinho({ quantidadeTotal,  precoTotal }: ItemCar
           Quantidade total: {quantidadeTotal}
         </p>
         <p className="card-text fw-medium">
-          Valor total: R${" "}
-          {precoTotal.toFixed(2)}
+          Valor total: R$ {precoTotal.toFixed(2)}
         </p>
       </div>
     </div>
