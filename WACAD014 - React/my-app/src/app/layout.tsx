@@ -1,6 +1,7 @@
 import BootstrapClient from "./components/BootstrapClient/BootstrapClient";
 import Navbar from "./components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ReactQueryClientProvider } from "./components/ReactQueryClient/ReactQueryClient";
 
 export default function RootLayout({
   children,
@@ -9,9 +10,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <Navbar />
-      <body>{children}</body>
-      <BootstrapClient />
+      <body>
+        <ReactQueryClientProvider>
+          <Navbar />
+          {children}
+          <BootstrapClient />
+        </ReactQueryClientProvider>
+      </body>
     </html>
   );
 }

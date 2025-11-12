@@ -20,8 +20,11 @@ export default function Produtos() {
     <ReactQueryClientProvider>
       <main>
         <div className="container p-5">
-          <ResumoCarrinho quantidadeTotal={quantidade} precoTotal={preco}/>
-          <ListagemProdutos produtos={mockProdutos} adicionarAoCarrinho={adicionarAoCarrinho}/>
+          <ResumoCarrinho quantidadeTotal={quantidade} precoTotal={preco} />
+          <ListagemProdutos
+            produtos={mockProdutos}
+            adicionarAoCarrinho={adicionarAoCarrinho}
+          />
         </div>
       </main>
     </ReactQueryClientProvider>
