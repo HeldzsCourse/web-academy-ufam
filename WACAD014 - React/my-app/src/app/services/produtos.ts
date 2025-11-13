@@ -1,6 +1,6 @@
-import { api } from "./api";
+import { apiProdutos } from "./api";
 import { ProdutoType } from "@/app/types/Produto.types";
 
-export async function getListaProdutos(): Promise<ProdutoType[]> {
-  return api.get("/produto").then((response) => response.data);
+export async function getListaProduto(): Promise<ProdutoType[]> {
+  return apiProdutos.get("/produto").then((response) => response.data);
 }

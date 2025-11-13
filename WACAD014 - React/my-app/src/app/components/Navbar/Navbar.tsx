@@ -32,6 +32,11 @@ export default function Navbar() {
                 Carrinho
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/favoritos">
+                Favoritos
+              </a>
+            </li>
           </ul>
 
           <button className="btn btn-dark">Sair</button>
