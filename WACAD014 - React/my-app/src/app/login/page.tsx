@@ -1,28 +1,17 @@
+"use client";
+
 import Link from "next/link";
 
-export default function Cadastro() {
+export default function Login() {
   return (
     <main>
       <div className="container-fluid d-flex min-vh-100">
         <div className="row min-vw-100">
           <div className="col-12 col-md-4 bg-light d-flex justify-content-center align-items-center">
             <h2>Bem vindo à WA Loja!</h2>
-          </div>
+          </div>{" "}
           <div className="col-12 col-md-8 d-flex justify-content-center align-items-center">
             <form>
-              <div className="mb-3">
-                <label htmlFor="nome" className="form-label">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  className="form-control form-control-lg"
-                  id="nome"
-                  aria-describedby="nome"
-                  required
-                />
-              </div>
-
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email
@@ -32,19 +21,6 @@ export default function Cadastro() {
                   className="form-control form-control-lg"
                   id="email"
                   aria-describedby="email"
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="confirmarEmail" className="form-label">
-                  Confirmar email
-                </label>
-                <input
-                  type="email"
-                  className="form-control form-control-lg"
-                  id="confirmarEmail"
-                  aria-describedby="confirmarEmail"
                   required
                 />
               </div>
@@ -62,13 +38,13 @@ export default function Cadastro() {
 
               <div className="d-grid col-12">
                 <button type="submit" className="btn btn-success">
-                  Confirmar cadastro
+                  Entrar
                 </button>
               </div>
 
               <div className="text-center mt-3">
-                <Link href="/login" className="btn btn-link">
-                  já possuo cadastro
+                <Link href="/cadastro" className="btn btn-link">
+                  não tenho cadastro
                 </Link>
               </div>
             </form>

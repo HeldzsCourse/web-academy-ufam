@@ -34,13 +34,19 @@ export default function FavoritedProducts() {
               </tr>
             </thead>
             <tbody>
-              {favoritos.map((item) => (
-                <FavoritedItem
-                  key={item.id}
-                  item={item}
-                  refetchFavoritos={refetchFavoritos}
-                />
-              ))}
+              {favoritos.length === 0 ? (
+                <tr>
+                  <td colSpan={3}>Nenhum produto favoritado.</td>
+                </tr>
+              ) : (
+                favoritos.map((item) => (
+                  <FavoritedItem
+                    key={item.id}
+                    item={item}
+                    refetchFavoritos={refetchFavoritos}
+                  />
+                ))
+              )}
             </tbody>
           </table>
         </div>

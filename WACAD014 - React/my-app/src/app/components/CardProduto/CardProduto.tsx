@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ProdutoType } from "@/app/types/Produto.types";
 import { useAddFavorito } from "@/app/hooks/useAddFavorito";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface CardProdutoProps {
   produto: ProdutoType;
@@ -15,10 +16,16 @@ export default function CardProduto({
   produto,
   adicionarAoCarrinho,
 }: CardProdutoProps) {
+  const router = useRouter();
+
   const { addFavorito, isPending } = useAddFavorito(
     () => toast.success("Produto favoritado com sucesso!"),
     () => toast.error("Produto já está favoritado!")
   );
+
+  const verDetalhesProduto = () => {
+    router.push(`/produto/${produto.id}`);
+  };
 
   return (
     <div className="col">
@@ -29,6 +36,7 @@ export default function CardProduto({
           alt="imagem placeholder"
           width={300}
           height={320}
+          onClick={() => verDetalhesProduto()}
         />
 
         <div className="card-body bg-light">
