@@ -39,7 +39,9 @@ export default function Navbar() {
             </li>
           </ul>
 
-          <button className="btn btn-dark">Sair</button>
+          <Link className="btn btn-dark" href="/login">
+            Sair
+          </Link>
         </div>
       </div>
     </nav>
