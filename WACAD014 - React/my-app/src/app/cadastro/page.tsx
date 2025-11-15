@@ -1,6 +1,32 @@
+"use client";
+
 import Link from "next/link";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
+type Inputs = {
+  nome: string;
+  email: string;
+  confirmarEmail: string;
+  senha: string;
+};
 
 export default function Cadastro() {
+  const { push } = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const email = watch("email");
+
+  const onSubmit: SubmitHandler<Inputs> = () => {
+    push("/login");
+  };
+
   return (
     <main>
       <div className="container-fluid d-flex min-vh-100">
@@ -9,7 +35,7 @@ export default function Cadastro() {
             <h2>Bem vindo à WA Loja!</h2>
           </div>
           <div className="col-12 col-md-8 d-flex justify-content-center align-items-center">
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-3">
                 <label htmlFor="nome" className="form-label">
                   Nome
@@ -19,8 +45,14 @@ export default function Cadastro() {
                   className="form-control form-control-lg"
                   id="nome"
                   aria-describedby="nome"
-                  required
+                  {...register("nome", {
+                    required: {
+                      value: true,
+                      message: "Este campo é obrigatório",
+                    },
+                  })}
                 />
+                {errors.nome && <span>{errors.nome.message}</span>}
               </div>
 
               <div className="mb-3">
@@ -32,8 +64,18 @@ export default function Cadastro() {
                   className="form-control form-control-lg"
                   id="email"
                   aria-describedby="email"
-                  required
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Este campo é obrigatório",
+                    },
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Email inválido",
+                    },
+                  })}
                 />
+                {errors.email && <span>{errors.email.message}</span>}
               </div>
 
               <div className="mb-3">
@@ -45,8 +87,18 @@ export default function Cadastro() {
                   className="form-control form-control-lg"
                   id="confirmarEmail"
                   aria-describedby="confirmarEmail"
-                  required
+                  {...register("confirmarEmail", {
+                    required: {
+                      value: true,
+                      message: "Este campo é obrigatório",
+                    },
+                    validate: (value) =>
+                      value === email || "Os emails não são iguais",
+                  })}
                 />
+                {errors.confirmarEmail && (
+                  <span>{errors.confirmarEmail.message}</span>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="senha" className="form-label">
@@ -56,8 +108,18 @@ export default function Cadastro() {
                   type="password"
                   className="form-control form-control-lg"
                   id="senha"
-                  required
+                  {...register("senha", {
+                    required: {
+                      value: true,
+                      message: "Este campo é obrigatório",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "A senha deve ter no mínimo 6 caracteres",
+                    },
+                  })}
                 />
+                {errors.senha && <span>{errors.senha.message}</span>}
               </div>
 
               <div className="d-grid col-12">

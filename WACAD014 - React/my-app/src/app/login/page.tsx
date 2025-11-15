@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { on } from "events";
 
 type Inputs = {
   email: string;
