@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
 import { Produto } from "@/app/types/produto";
 import Image from "next/image";
-import { FavoritosContext } from "@/app/page";
+import { FavoritosContext } from "@/app/state/FavoritosProvider";
 
 interface CardProdutoProps {
   produto: Produto;

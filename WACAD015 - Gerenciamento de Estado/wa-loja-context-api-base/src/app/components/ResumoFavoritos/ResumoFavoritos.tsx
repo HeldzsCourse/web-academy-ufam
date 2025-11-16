@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CardProduto from "../CardProduto/CardProduto";
-import { FavoritosContext } from "@/app/page";
+import { FavoritosContext } from "@/app/state/FavoritosProvider";
 
 interface ResumoCarrinhoProps {}
 
