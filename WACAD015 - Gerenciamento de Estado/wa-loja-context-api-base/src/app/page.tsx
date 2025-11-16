@@ -1,8 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, createContext } from "react";
 import ListagemProdutos from "./components/ListagemProdutos/ListagemProdutos";
 import { mockProdutos } from "./mocks/produtos";
+import { Produto } from "./types/produto";
+
+export const FavoritosContext = createContext<{
+  favoritos: Produto[];
+  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
+}>({
+  favoritos: [],
+  setFavoritos: () => {},
+});
 
 export default function App() {
   const produtos = mockProdutos;
@@ -11,11 +20,9 @@ export default function App() {
   return (
     <main>
       <div className="container p-5">
-        <ListagemProdutos
-          produtos={produtos}
-          favoritos={favoritos}
-          setFavoritos={setFavoritos}
-        />
+        <FavoritosContext.Provider value={{ favoritos, setFavoritos }}>
+          <ListagemProdutos produtos={produtos} />
+        </FavoritosContext.Provider>
       </div>
     </main>
   );
