@@ -5,6 +5,7 @@
  * @returns {string} - O primeiro nome extraído do nome completo ou o próprio nome caso não haja espaços.
  */
 function primeiroNome(nomeCompleto) {
+  nomeCompleto = nomeCompleto.trim();
   const espacoEmBranco = nomeCompleto.indexOf(" ");
   if (espacoEmBranco === -1) return nomeCompleto;
   else return nomeCompleto.slice(0, espacoEmBranco);
@@ -28,7 +29,8 @@ function verificarDisponibilidadeEstoque(tipoProduto, quantidade) {
   };
 
   const estoqueDisponivel = estoque[tipoProduto];
-  if (estoqueDisponivel === 0) return false;
+  if (estoqueDisponivel === 0 || estoqueDisponivel < quantidade) return false;
+  else if (estoqueDisponivel === undefined) return false;
   else return true;
 }
 
@@ -49,7 +51,7 @@ function verificarDisponibilidadeEstoque(tipoProduto, quantidade) {
 function calcularPrecoTotal(produtos) {
   let total = 0;
   for (let i = 0; i < produtos.length; i++) {
-    total = produtos[i].price;
+    total = produtos[i].price * produtos[i].quantidade + total;
   }
   return total;
 }
