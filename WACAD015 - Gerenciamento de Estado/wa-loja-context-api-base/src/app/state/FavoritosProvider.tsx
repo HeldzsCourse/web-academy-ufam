@@ -1,18 +1,17 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Produto } from "../types/produto";
+import useFavoritos from "../hooks/useFavoritos";
 
 export const FavoritosContext = createContext<{
   favoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
   verificarFavorito: (id: string) => boolean;
   removerFavorito: (id: string) => void;
   adicionarFavorito: (produto: Produto) => void;
   precoTotalFavoritos: number;
 }>({
   favoritos: [],
-  setFavoritos: () => {},
   verificarFavorito: () => false,
   removerFavorito: () => {},
   adicionarFavorito: () => {},
@@ -22,7 +21,16 @@ export const FavoritosContext = createContext<{
 export const FavoritosProvider: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
-  const [favoritos, setFavoritos] = useState<Produto[]>([]);
+  // const [favoritos, setFavoritos] = useState<Produto[]>([]);
+  const { favoritos, add, remove, refetch } = useFavoritos();
+
+  // useEffect(() => {
+  //   fetch("https://favoritos-context-api-json-server-z.vercel.app/favoritos")
+  //     .then((response) => response.json())
+  //     .then((favoritos) => {
+  //       setFavoritos(favoritos);
+  //     });
+  // }, []);
 
   // Verifica se um produto está nos favoritos e retorna true ou false
   const verificarFavorito = (id: string) => {
@@ -31,14 +39,12 @@ export const FavoritosProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
   // Remove um produto dos favoritos
   const removerFavorito = (id: string) => {
-    const novosFavoritos = favoritos.filter((produto) => produto.id !== id);
-    setFavoritos(novosFavoritos);
+    remove.mutate(id);
   };
 
   // Adiciona um produto aos favoritos
   const adicionarFavorito = (produto: Produto) => {
-    const novosFavoritos = [...favoritos, produto];
-    setFavoritos(novosFavoritos);
+    add.mutate(produto);
   };
 
   // Retorna o preço total dos produtos favoritos
@@ -50,11 +56,10 @@ export const FavoritosProvider: React.FC<React.PropsWithChildren<{}>> = ({
     <FavoritosContext.Provider
       value={{
         favoritos,
-        setFavoritos,
-        verificarFavorito,
-        removerFavorito,
-        adicionarFavorito,
         precoTotalFavoritos,
+        adicionarFavorito,
+        removerFavorito,
+        verificarFavorito,
       }}
     >
       {children}

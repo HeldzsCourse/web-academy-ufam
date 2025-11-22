@@ -5,6 +5,7 @@ import BootstrapClient from "./components/BootstrapClient";
 import Navbar from "./components/Navbar/Navbar";
 import { FavoritosProvider } from "./State/FavoritosProvider";
 import { AuthProvider } from "./State/AuthProvider";
+import { ReactQueryClientProvider } from "./components/ReactQueryClient/ReactQueryClient";
 
 export default function RootLayout({
   children,
@@ -14,13 +15,15 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        <FavoritosProvider>
-          <AuthProvider>
-            <Navbar />
-            {children}
-            <BootstrapClient />
-          </AuthProvider>
-        </FavoritosProvider>
+        <ReactQueryClientProvider>
+          <FavoritosProvider>
+            <AuthProvider>
+              <Navbar />
+              {children}
+              <BootstrapClient />
+            </AuthProvider>
+          </FavoritosProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
