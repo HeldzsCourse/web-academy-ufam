@@ -1,15 +1,14 @@
-import { calculaValorComPorcentagemDeDesconto } from "@/app/helpers";
+import {
+  useFavoritosContext,
+  useProdutosFavoritos,
+  useValorTotalFavoritos,
+} from "@/app/State/FavoritosProvider";
 import ItemFavorito from "../ItemFavorito/ItemFavorito";
-import { Produto } from "@/app/types/produto";
-import { useFavoritosContext } from "@/app/State/FavoritosProvider";
-
-interface IListagemFavoritosProps {
-  produtosFavoritos: Produto[];
-  setFavoritos: React.Dispatch<React.SetStateAction<Produto[]>>;
-}
 
 export default function ListagemFavoritos() {
-  const { favoritos, precoTotalFavoritos } = useFavoritosContext();
+  const favoritos = useProdutosFavoritos();
+  const valorTotalFavoritos = useValorTotalFavoritos();
+  const { setFavoritos } = useFavoritosContext();
 
   return (
     <div className="card mb-4">
@@ -29,7 +28,11 @@ export default function ListagemFavoritos() {
               </thead>
               <tbody>
                 {favoritos.map((item) => (
-                  <ItemFavorito key={item.id} itemFavorito={item} />
+                  <ItemFavorito
+                    key={item.id}
+                    itemFavorito={item}
+                    setFavoritos={setFavoritos}
+                  />
                 ))}
               </tbody>
             </table>
@@ -42,8 +45,9 @@ export default function ListagemFavoritos() {
         <small className="text-muted">
           Quantidade de produtos: {favoritos.length}
         </small>
+
         <small className="text-muted">
-          Valor total: R$ {precoTotalFavoritos.toFixed(2)}
+          Valor total: R$ {valorTotalFavoritos}
         </small>
       </div>
     </div>

@@ -1,16 +1,13 @@
 "use client";
 
-import { useAuth } from "@/app/State/AuthProvider";
 import Link from "next/link";
 
 export default function Navbar() {
-  const { email, logout } = useAuth();
-
   return (
     <nav className="navbar navbar-expand-md bg-light border-bottom border-body sticky-top">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Loja WA
+          Vitrine WA
         </a>
         <button
           className="navbar-toggler"
@@ -36,23 +33,6 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-
-          {email ? (
-            <>
-              <span className="navbar-text me-3">Olá, {email}</span>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={logout}
-              >
-                Sair
-              </button>
-            </>
-          ) : (
-            <Link className="btn btn-secondary" href="/login">
-              Login
-            </Link>
-          )}
         </div>
       </div>
     </nav>
